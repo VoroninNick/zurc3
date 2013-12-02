@@ -1,3 +1,25 @@
+GIT
+  remote: git://github.com/johnbintz/caroufredsel-rails.git
+  revision: 81bb0c362e26ac76c714d49a2e02e076a433a039
+  specs:
+    caroufredsel-rails (6.1.0)
+      coffee-script
+
+GIT
+  remote: git://github.com/vikewoods/fancybox-rails.git
+  revision: 0060b8f8db0bfb46c6c83ab85cba8f9d43bf9d0c
+  specs:
+    fancybox-rails (0.1.5)
+      railties (>= 3.1.0)
+
+GIT
+  remote: git://github.com/zurb/foundation-rails.git
+  revision: e077d749316bcb78525830e15a58c0c19e31a854
+  specs:
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,6 +50,13 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     builder (3.1.4)
+    ckeditor (4.0.6)
+      mime-types
+      orm_adapter
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -52,6 +81,12 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
+    orm_adapter (0.5.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -64,6 +99,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
+    rails-admin (0.0.0)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -108,10 +144,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  caroufredsel-rails!
+  ckeditor
   coffee-rails (~> 4.0.0)
+  fancybox-rails!
+  foundation-rails!
   jbuilder (~> 1.2)
   jquery-rails
+  paperclip
   rails (= 4.0.0)
+  rails-admin
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3
