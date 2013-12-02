@@ -43,3 +43,15 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+gem 'rails-admin'
+gem 'ckeditor'
+gem 'paperclip'
+
+# visual
+gem 'foundation-rails', github: 'zurb/foundation-rails'
+
+gem 'caroufredsel-rails', :git => 'git://github.com/johnbintz/caroufredsel-rails.git'
+
+gem 'fancybox-rails', :github => 'vikewoods/fancybox-rails'
