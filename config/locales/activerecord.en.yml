@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    models:
+      article:
+        one: "Стаття"
+        other: "Статті"
+      activeadmin_settings/setting: "Setting"
+      admin_user:
+        one: "Administrator"
+        other: "Administrators"
+      vs/route:
+        one: "Route"
+        other: "Routes"
+    attributes:
+      article:
+        name: "Ім'я"
+      article/translation:
+        name: "Ім'я"
+        short_description: "Короткий опис"
+        full_description: "Повний опис"
+

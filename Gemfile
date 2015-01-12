@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -25,7 +25,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -51,10 +51,43 @@ gem 'ckeditor'
 gem 'paperclip'
 
 # visual
-gem 'foundation-rails', github: 'zurb/foundation-rails'
+#gem 'foundation-rails', github: 'zurb/foundation-rails'
+gem 'foundation-rails'
 
-gem 'caroufredsel-rails', :git => 'git://github.com/johnbintz/caroufredsel-rails.git'
 
-gem 'fancybox-rails', :github => 'vikewoods/fancybox-rails'
+gem 'jquery-ui-rails'
+
+#gem 'caroufredsel-rails', :git => 'git://github.com/johnbintz/caroufredsel-rails.git'
+
+#gem 'fancybox-rails', :github => 'vikewoods/fancybox-rails'
+gem 'fancybox2-rails'
+
+gem 'chosen-rails'
 
 gem "devise"
+
+gem 'slim-rails'
+
+gem 'ukrainian', github: 'VoroninNick/ukrainian'
+gem 'russian'
+
+#gem 'rails-i18n'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
+gem 'devise-i18n'
+
+
+gem 'globalize'
+gem 'globalize-versioning'
+gem 'paper_trail'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin-translate', github: 'rbatllet/activeadmin-translate'
+gem "activeadmin-sortable-tree", :github => "nebirhos/activeadmin-sortable-tree", :branch => "master"
+gem "active_admin_multi_upload"
+gem 'activeadmin_associations', github: "vigetlabs/active_admin_associations", branch: 'activeadmin-1.0'
+gem "activeadmin-settings", github: 'VoroninNick/activeadmin-settings', branch: 'pasha'
+
+gem 'migration_data'
