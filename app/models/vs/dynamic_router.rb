@@ -24,7 +24,7 @@ module Vs
     end
 
     def self.load
-      if ActiveRecord::Base.connection.tables.include?(:routes)
+      #if ActiveRecord::Base.connection.tables.include?(:routes)
         route_model = Vs::Route rescue nil
         available_locales_for_routes = I18n.available_locales
         if route_model && route_model.table_exists?
@@ -55,7 +55,7 @@ module Vs
             end
           end
         end
-      end
+      #end
     end
 
     def self.reload
