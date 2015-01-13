@@ -25,9 +25,9 @@ module Vs
 
     def self.load
 
-      route_model = Vs::Route
+      route_model = Vs::Route rescue nil
       available_locales_for_routes = I18n.available_locales
-      if route_model.table_exists?
+      if route_model && route_model.table_exists?
         Rails.application.class.routes.draw do
           route_model.all.each do |route|
             #define_method "ApplicationHelper.#{route.route_name}" do
