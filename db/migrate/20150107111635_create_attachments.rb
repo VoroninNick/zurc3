@@ -1,11 +1,13 @@
 class CreateAttachments < ActiveRecord::Migration
   def up
-    attachment_model = Attachment
-    create_table attachment_model.table_name do |t|
+    attachments_table_name = :attachments
+    create_table attachments_table_name do |t|
       t.string :file
       t.string :attachable_type
       t.string :attachable_id
     end
+
+    attachment_model = Attachment
 
     attachment_model.create_translation_table!(file: :string)
   end

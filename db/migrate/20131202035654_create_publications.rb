@@ -1,8 +1,10 @@
 class CreatePublications < ActiveRecord::Migration
   def up
-    publication_model = Publication
 
-    create_table publication_model.table_name do |t|
+
+    publications_table = :publications
+
+    create_table publications_table do |t|
       t.string :name
       t.date :release_date
       t.string :author
@@ -15,6 +17,8 @@ class CreatePublications < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    publication_model = Publication
 
     publication_model.create_translation_table!(name: :string, author: :string, intro: :text, short_description: :text, full_description: :text, avatar: :string)
 

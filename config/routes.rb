@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
+
   Vs::DynamicRouter.load
 
-  scope ActiveAdmin.application.default_namespace.to_s do
-    match '(*a)', to: 'application#redirect_to_admin', via: [:get]
-  end
+  if AdminUser.table_exists?
+    scope ActiveAdmin.application.default_namespace.to_s do
+      match '(*a)', to: 'application#redirect_to_admin', via: [:get]
+    end
 
-  scope "/:locale", locale: /[A-Za-z]{2}/, defaults: { locale: I18n.locale } do
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    ActiveAdmin.routes(self)
+    scope "/:locale", locale: /[A-Za-z]{2}/, defaults: { locale: I18n.locale } do
+      devise_for :admin_users, ActiveAdmin::Devise.config
+      ActiveAdmin.routes(self)
 
 
+    end
   end
 
   #devise_for :admin_users, ActiveAdmin::Devise.config

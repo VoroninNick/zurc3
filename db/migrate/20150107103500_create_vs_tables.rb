@@ -21,8 +21,9 @@ class CreateVsTables < ActiveRecord::Migration
     # --------------------------------------------
     # ============================================
 
-    model_page_metadata = Vs::PageMetadata
-    create_table model_page_metadata.table_name do |t|
+
+    page_metadata_table_name = :page_metadata
+    create_table page_metadata_table_name do |t|
       t.string :head_title
       t.text :meta_tags
       t.text :meta_description
@@ -32,6 +33,9 @@ class CreateVsTables < ActiveRecord::Migration
       t.string :page_type
       t.timestamps
     end
+
+    model_page_metadata = Vs::PageMetadata
+
     model_page_metadata.create_translation_table!({head_title: :string, meta_tags: :text, meta_description: :text })
 
     # ============================================
@@ -40,9 +44,9 @@ class CreateVsTables < ActiveRecord::Migration
     # --------------------------------------------
     # ============================================
 
-    route_model = Vs::Route
+    route_table_name = :routes
 
-    create_table route_model.table_name do |t|
+    create_table route_table_name do |t|
       t.string :name
       t.string :route_string
       t.string :route_name
@@ -54,7 +58,9 @@ class CreateVsTables < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index route_model.table_name, :position
+    route_model = Vs::Route
+
+    add_index route_table_name, :position
 
     route_model.create_translation_table!(route_string: :string, redirect_to_url: :string)
   end
