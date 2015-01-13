@@ -51,6 +51,7 @@ gem 'ckeditor'
 gem 'paperclip'
 
 gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
+gem 'responders', '~> 2.0'
 
 # visual
 #gem 'foundation-rails', github: 'zurb/foundation-rails'
