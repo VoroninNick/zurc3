@@ -24,33 +24,34 @@ module Vs
     end
 
     def self.load
+      if ActiveRecord::Base.connection.tables.include?(:routes)
+        route_model = Vs::Route rescue nil
+        available_locales_for_routes = I18n.available_locales
+        if route_model && route_model.table_exists?
+          Rails.application.class.routes.draw do
+            route_model.all.each do |route|
+              #define_method "ApplicationHelper.#{route.route_name}" do
 
-      route_model = Vs::Route rescue nil
-      available_locales_for_routes = I18n.available_locales
-      if route_model && route_model.table_exists?
-        Rails.application.class.routes.draw do
-          route_model.all.each do |route|
-            #define_method "ApplicationHelper.#{route.route_name}" do
+              #end
 
-            #end
+              rb_code = "def #{route.route_name}_path( options = {})" +'options[:locale] = I18n.locale if !options.include? :locale; '+'send( "#{I18n.locale}_' + "#{route.route_name}_path" +'", options ); end'
 
-            rb_code = "def #{route.route_name}_path( options = {})" +'options[:locale] = I18n.locale if !options.include? :locale; '+'send( "#{I18n.locale}_' + "#{route.route_name}_path" +'", options ); end'
+              #match 'photos/:id' => 'photos#show', :constraints => { :id => /[A-Z]\d{5}/ }
 
-            #match 'photos/:id' => 'photos#show', :constraints => { :id => /[A-Z]\d{5}/ }
+              Rails.application.routes.url_helpers.module_eval rb_code
+              #ApplicationHelper.module_eval rb_code
 
-            Rails.application.routes.url_helpers.module_eval rb_code
-            #ApplicationHelper.module_eval rb_code
+              route.translations_by_locale.select{|key| available_locales_for_routes.include?(key.to_sym) }.each_pair do |locale, route_translation|
+                to = route.controller_action
 
-            route.translations_by_locale.select{|key| available_locales_for_routes.include?(key.to_sym) }.each_pair do |locale, route_translation|
-              to = route.controller_action
+                if !to || (to.respond_to?(:length) && to.length == 0) || !to.match(/^\w{1,}#\w{1,}$/)
+                  to = redirect(route_translation.redirect_to_url)
+                end
 
-              if !to || (to.respond_to?(:length) && to.length == 0) || !to.match(/^\w{1,}#\w{1,}$/)
-                to = redirect(route_translation.redirect_to_url)
+                route_string_starts_with_slash = route_translation.route_string.scan(/^\//).count > 0
+
+                match "(/:locale)#{'/' if !route_string_starts_with_slash}#{route_translation.route_string}", to: to, as: "#{locale}_#{route.route_name}", via: route.method_list, constraints: { locale: /[a-zA-Z]{2,2}/ }, defaults: { predefined_locale: locale.to_s, route_id: route.id, route_locale: locale.to_s, route_name: route.route_name }
               end
-
-              route_string_starts_with_slash = route_translation.route_string.scan(/^\//).count > 0
-
-              match "(/:locale)#{'/' if !route_string_starts_with_slash}#{route_translation.route_string}", to: to, as: "#{locale}_#{route.route_name}", via: route.method_list, constraints: { locale: /[a-zA-Z]{2,2}/ }, defaults: { predefined_locale: locale.to_s, route_id: route.id, route_locale: locale.to_s, route_name: route.route_name }
             end
           end
         end
