@@ -22,7 +22,7 @@ class CreateVsTables < ActiveRecord::Migration
     # ============================================
 
 
-    page_metadata_table_name = :page_metadata
+    page_metadata_table_name = :voronin_studio_page_metadata
     create_table page_metadata_table_name do |t|
       t.string :head_title
       t.text :meta_tags
