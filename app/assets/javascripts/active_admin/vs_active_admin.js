@@ -1,3 +1,9 @@
+// ===========================================
+// -------------------------------------------
+// TODO: make event uncheck and make it working
+// -------------------------------------------
+// ===========================================
+
 (function($){
     $body = null
     $document = $(document)
@@ -35,59 +41,88 @@
             $items_to_hide.removeClass(hide_class)
         }
 
-        if(!initialized){
-            input_data = {}
-        }
-
-
-
-        if(checked || !initialized) {
-            if (initialized) {
-                console.log('initialized: ', initialized)
-                var prev_value = $input.data('input_data')[prev_checked_value_property_name]
-                var $prev_input = $('input[value=' + prev_value + ']')
-                if (allow_bubble) {
-                    $prev_input.handle_input()
-                }
-            }
-            else {
-                //input_data.prev_checked_value = input_value
-            }
-
-            input_data.prev_checked_value = input_value
-
-
-
-            var inputs_by_its_name = document.getElementsByName(input_name)
-            var $inputs_by_its_name = $(inputs_by_its_name)
-            $inputs_by_its_name.data('input_data', input_data)
-        }
+        //if(!initialized){
+        //    input_data = {}
+        //}
+        //
+        //
+        //
+        //if(checked || !initialized) {
+        //    if (initialized) {
+        //        console.log('initialized: ', initialized)
+        //        var prev_value = $input.data('input_data')[prev_checked_value_property_name]
+        //        var $prev_input = $('input[value=' + prev_value + ']')
+        //        if (allow_bubble) {
+        //            $prev_input.handle_input()
+        //        }
+        //    }
+        //    else {
+        //        //input_data.prev_checked_value = input_value
+        //    }
+        //
+        //    input_data.prev_checked_value = input_value
+        //
+        //
+        //
+        //    var inputs_by_its_name = document.getElementsByName(input_name)
+        //    var $inputs_by_its_name = $(inputs_by_its_name)
+        //    $inputs_by_its_name.data('input_data', input_data)
+        //}
 
 
 
     };
 
+    var group_names = [];
+    $('input[name][type=radio]').each(function(i){
+        name = $(i).attr('name');
+        if(group_names.indexOf(name) < 0){
+            group_names.push(name)
+        }
+    })
+
+    var $last = $('[name=radioButtonGroup]:checked');
+
+// Select the radio buttons as a group.
+    var $radios = $('input[type=radio]').bind('change', function (ev) {
+        // Click event handler
+        var $clicked = $(ev.target); // This is the radio that just got clicked.
+        $last.trigger('unclick'); // Fire the "unclick" event on the Last radio.
+
+        $last = $('[name=radioButtonGroup]:checked'); // Update the $last item.
+
+        // Should see the clicked item's "Value" property.
+        console.log("Clicked " + $clicked.attr('value'), $clicked, ev);
+    }).bind('unclick', function (ev) {
+        // Handler for our new "unclick" event - which fires whenever a radio loses focus.
+        var $unclicked = $(ev.target); // This is the radio which is losing it's checked status.
+
+        // Should see the unclicked item's "Value" property.
+        console.log("Unclicked " + $unclicked.attr('value'), $unclicked, ev);
+    });
+
+
 
     $document.on('ready', function(){
         $body = $('body')
-        //if($body.hasClass('admin_vs_menu_items')){
+        ////if($body.hasClass('admin_vs_menu_items')){
+        ////
+        ////    var $vs_menu_item_link_source_input = $('#vs_menu_item_link_source_input')
+        ////    $vs_menu_item_link_source_input.on('change', function(){
+        ////        var $input_wrapper = $(this)
+        ////        var $inputs = $vs_menu_item_link_source_input.find('input')
+        ////        var $checked_input = $inputs.filter(':checked')
+        ////        var checked_input_value = $checked_input.val()
+        ////        if(checked_input_value == 'url'){
+        ////
+        ////        }
+        ////
+        ////        //alert('hello')
+        ////        //alert('' + $input.val())
+        ////    })
+        ////}
         //
-        //    var $vs_menu_item_link_source_input = $('#vs_menu_item_link_source_input')
-        //    $vs_menu_item_link_source_input.on('change', function(){
-        //        var $input_wrapper = $(this)
-        //        var $inputs = $vs_menu_item_link_source_input.find('input')
-        //        var $checked_input = $inputs.filter(':checked')
-        //        var checked_input_value = $checked_input.val()
-        //        if(checked_input_value == 'url'){
         //
-        //        }
-        //
-        //        //alert('hello')
-        //        //alert('' + $input.val())
-        //    })
-        //}
-
-
         var $inputs_for_check_on_show_or_hide = $body.find('[data-show-selector], [data-hide-selector]')
         $inputs_for_check_on_show_or_hide.each(function(){
             var $input = $(this)

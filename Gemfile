@@ -94,3 +94,7 @@ gem 'activeadmin_associations', github: "vigetlabs/active_admin_associations", b
 gem "activeadmin-settings", github: 'VoroninNick/activeadmin-settings', branch: 'pasha'
 
 gem 'migration_data'
+
+gem 'ancestry'
+
+gem 'default_value_for'

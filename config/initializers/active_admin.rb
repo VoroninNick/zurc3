@@ -1,5 +1,3 @@
-
-
 ActiveAdmin.setup do |config|
 
   Dir[Rails.root.join('app', 'models', 'active_admin', '**/*.{rb}')].each do |f|

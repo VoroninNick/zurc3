@@ -24,14 +24,23 @@ unless RakeSettings.self_skip_initializers?
 
     form do |f|
       f.inputs do
+
+        f.input :linkable, as: :select, collection: proc { f.linkable }, include_blank: false
+
+        f.input :linkable_type, as: :hidden
+
         f.input :link_source, as: :radio, collection: [
-                                ["url", 1, {   }],
-                                ["association", 2, { :"data-show-selector" => "", :"data-hide-selector" => "#vs_menu_item_link_source_input + .activeadmin-translate" } ]]
+                                ["url", "url", { :"data-show-selector" => "#vs_menu_item_link_source_input + .activeadmin-translate", :"data-hide-selector" => "" }],
+                                ["association", "association", { :"data-show-selector" => "", :"data-hide-selector" => "#vs_menu_item_link_source_input + .activeadmin-translate" } ]]
         f.translate_inputs :url_translate_inputs do |t|
           t.input :url
         end
 
-        f.input :title_source, as: :radio, collection: ["title", "association"] do |i|
+
+
+        f.input :title_source, as: :radio, collection: [
+                                 ["title", "title", { :"data-show-selector" => "#vs_menu_item_title_source_input + .activeadmin-translate", :"data-hide-selector" => "" }],
+                                 ["association", "association", { :"data-show-selector" => "", :"data-hide-selector" => "#vs_menu_item_title_source_input + .activeadmin-translate" }] ] do |i|
           if !i
             html checked: "checked"
           end

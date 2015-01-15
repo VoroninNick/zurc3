@@ -8,6 +8,8 @@ module Vs
 
     has_ancestry
 
+    belongs_to :linkable, polymorphic: true
+
     translates :title, :url, versioning: :paper_trail
     accepts_nested_attributes_for :translations
     attr_accessible :translations, :translations_attributes
