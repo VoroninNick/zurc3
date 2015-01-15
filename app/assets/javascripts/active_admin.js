@@ -3,4 +3,7 @@
 //= require jquery-fileupload
 //= require jquery-fileupload/vendor/tmpl
 //= require chosen-jquery
-//= require_tree ./active_admin
+//= require active_admin/chosen
+//= require active_admin/sortable
+//= require active_admin/sortable_forms
+//= require active_admin/vs_active_admin
