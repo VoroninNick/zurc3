@@ -3,7 +3,7 @@ class PublicationController < InnerPageController
     #@publications = Publication.where(published: 't').limit(10)
     #@articles = Article.publications.includes(:attachments)
     @publication_ads = PublicationAd.ads
-    @articles = Article.publications_exclude_ads(@publication_ads).includes(:attachments)
+    @articles = Article.publications_exclude_ads(@publication_ads)
 
     @breadcrumbs.push({title: "Публікації", url: false, current: true})
   end
