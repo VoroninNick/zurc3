@@ -1,9 +1,7 @@
 uk:
   activerecord:
     models:
-      article:
-        one: "Стаття"
-        other: "Статті"
+      article: "Статті"
       activeadmin_settings/setting: "Налаштування"
       admin_user: "Адміністратори"
       vs/route: "Роути"
