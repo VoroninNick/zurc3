@@ -20,10 +20,11 @@
       - if !@article.intro.blank?
         .article-intro
           = @article.intro
-    .article-image-and-attachments.columns.large-4.left
-      .article-image
-        img src="#{@article.image.url(:avatar)}"
-      = render partial: "article_attachments", locals: { attachments: @article.attachments }
+    - if @article.image && @article.image.file.file.exists?
+      .article-image-and-attachments.columns.large-4.left
+        .article-image
+          img src="#{@article.image.url(:avatar)}"
+        = render partial: "article_attachments", locals: { attachments: @article.attachments }
     .clearfix
   .article-content.columns.large-8.right
     = raw @article.content

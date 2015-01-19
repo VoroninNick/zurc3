@@ -6,7 +6,7 @@
   - if article.release_date
     .list-item-date
       = article.release_date.strftime("%d.%m.%Y")
-  - if article.image && article.image.file.exists?
+  - if article.image && article.image.file.file.exists?
     .list-item-thumb
       a.list-item-thumb-a href="#"
         = image_tag article.image.url(:site_thumb)
