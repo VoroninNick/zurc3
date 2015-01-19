@@ -22,6 +22,13 @@ class Article < ActiveRecord::Base
 
   class Translation
     attr_accessible :locale, :name, :short_description, :content, :author, :intro, :slug
+    before_validation :generate_slug
+
+    def generate_slug
+      self.slug = self.name if self.slug.blank?
+      self.slug = self.slug.parameterize
+    end
+
   end
 
   has_one :page_metadata, :class_name => 'Vs::PageMetadata', as: :page
