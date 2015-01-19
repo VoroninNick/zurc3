@@ -1,31 +1,40 @@
 class Article < ActiveRecord::Base
-  has_one :image, as: :assetable, class_name: 'Assets::Image'
+  has_one :image, as: :assetable, class_name: 'Assets::Image', autosave: true
   accepts_nested_attributes_for :image
   attr_accessible :image, :image_attributes
 
-  has_many :attachments, as: :assetable, class_name: 'Assets::Attachment'
+  has_many :attachments, as: :assetable, class_name: 'Assets::Attachment', autosave: true
   accepts_nested_attributes_for :attachments, allow_destroy: true
   attr_accessible :attachments, :attachments_attributes, :attachment_ids
 
-  attr_accessible :name, :short_description, :intro, :content, :article_category, :article_category_id, :release_date, :slug, :author
+  attr_accessible :name, :short_description, :intro, :content, :article_category, :article_category_id, :release_date, :slug, :author, :published
   belongs_to :article_category
 
-  translates :name, :short_description, :content, :author, :intro, :slug, :versioning => :paper_trail
-  accepts_nested_attributes_for :translations
-  attr_accessible :translations, :translations_attributes
-
   scope :publications, proc { where(article_category_id: 4 ) }
-  scope :publications_exclude_ads, proc { ads = PublicationAd.ads ; publications.select {|p| used = false; ads.map {|ad| used = true if ad.publication_id == p.id   }; !used  } }
+  scope :publications_exclude_ads, ->(ads = PublicationAd.ads) { publications.select {|p| used = false; ads.map {|ad| used = true if ad.publication_id == p.id   }; !used  } }
   scope :about_us, proc { where(article_category_id: 2) }
   scope :what_we_do, proc { where(article_category_id: 1) }
   scope :news, proc { where(article_category_id: 3) }
+  scope :published, proc { where(published: 't') }
+  scope :unpublished, proc { where.not(published: 't') }
+  scope :order_by_date_desc, proc { order('release_date desc') }
+
+  translates :name, :short_description, :content, :author, :intro, :slug, :versioning => :paper_trail, autosave: true, foreign_key: :article_id
+  #has_many :translations,autosave: true
+  # has_many :translations, :class_name  => translation_class.name,
+  #          :foreign_key => options[:foreign_key],
+  #          :dependent   => :destroy,
+  #          :extend      => HasManyExtensions,
+  #          :autosave    => true
+  accepts_nested_attributes_for :translations
+  attr_accessible :translations, :translations_attributes
 
   class Translation
     attr_accessible :locale, :name, :short_description, :content, :author, :intro, :slug
     before_validation :generate_slug
 
     def generate_slug
-      self.slug = self.name if self.slug.blank?
+      self.slug = self.name || "" if self.slug.blank?
       self.slug = self.slug.parameterize
     end
 
@@ -59,5 +68,25 @@ class Article < ActiveRecord::Base
     else
       return "#"
     end
+  end
+
+  def related_publications
+    Article.published.publications.where.not(id: self.id).order_by_date_desc.limit(4)
+  end
+
+  #amoeba do
+    #enable
+    #include_field :translations
+    #clone [:translations, :attachments, :image]
+    # customize([
+    #   lambda { |original_item,new_item|
+    #     new_item.release_date = DateTime.now
+    #     new_item.name = "publication-#{new_item.id}"
+    #   }
+    # ])
+  #end
+
+  def self.next_model_id
+    ActiveRecord::Base.connection.execute("SELECT NEXTVAL('models_id_seq')").first["nextval"].to_i
   end
 end

@@ -25,6 +25,7 @@ unless RakeSettings.self_skip_initializers?
     # end
 
     index do
+      column :published
       column :name
       column :release_date
       column :article_category
@@ -33,6 +34,7 @@ unless RakeSettings.self_skip_initializers?
 
     form do |f|
       f.inputs do
+        f.input :published, as: :boolean
         f.input :article_category, as: :select, collection: ArticleCategory.all
         #f.input :article_category, as: :select, collection: (  ;values = [1,2,3]; formatted_values = values.map {|v| "<option>#{v}</option>" }; formatted_values  )
         #f.input :article_category, as: :select, collection: option_groups_from_collection_for_select(ArticleCategory.roots, :children, :name, :id, :name)

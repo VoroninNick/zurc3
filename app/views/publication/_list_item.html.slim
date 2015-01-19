@@ -1,12 +1,16 @@
 .list-item.publication-item.columns.large-6 class="#{"has-attachments" if article.attachments.count > 0}"
-  .list-item-title
-    a.list-item-title-a href=article.url
-      = article.name
-  .list-item-date
-    = article.release_date.strftime("%d.%m.%Y")
-  .list-item-thumb
-    a.list-item-thumb-a href="#"
-      = image_tag article.image.url(:site_thumb)
-  .list-item-short-description
-    = article.short_description
+  - if article.name
+    .list-item-title
+      a.list-item-title-a href=article.url
+        = article.name
+  - if article.release_date
+    .list-item-date
+      = article.release_date.strftime("%d.%m.%Y")
+  - if article.image && article.image.file.exists?
+    .list-item-thumb
+      a.list-item-thumb-a href="#"
+        = image_tag article.image.url(:site_thumb)
+  - if !article.short_description.blank?
+    .list-item-short-description
+      = article.short_description
   = render partial: "article_attachments", locals: { attachments: article.attachments }
