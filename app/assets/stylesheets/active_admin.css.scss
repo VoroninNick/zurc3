@@ -14,6 +14,7 @@
 
 @import "active_admin/translate";
 @import "activeadmin_settings";
+@import "active_admin/sortable_forms";
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
@@ -37,4 +38,9 @@
 
 #header .header-item.tabs{
   overflow: visible;
+}
+
+.file-icon-img{
+  width: 48px;
+  height: 48px;
 }

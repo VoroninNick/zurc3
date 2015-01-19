@@ -5,7 +5,9 @@ class ArticleCategory < ActiveRecord::Base
   accepts_nested_attributes_for :translations
   attr_accessible :translations, :translations_attributes
 
+  has_ancestry
+
   class Translation
-    attr_accessible :locale, :name, :author, :intro
+    attr_accessible :locale, :name
   end
 end

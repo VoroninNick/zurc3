@@ -5,6 +5,7 @@ class CreateArticleCategories < ActiveRecord::Migration
       t.string :ancestry
       t.integer :position
 
+
       t.timestamps null: false
     end
 

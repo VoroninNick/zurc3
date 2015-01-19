@@ -8,6 +8,7 @@ module Vs
 
     attr_accessible :name
 
+
     before_save :init_fields
     def init_fields
       if page
@@ -52,6 +53,11 @@ module Vs
       end
     end
 
+    def get_url(locale = I18n.locale)
+      #self.translations_by_locale[locale.to_sym].url
+      self.page.translations_by_locale[locale.to_sym].slug
+    end
+
     # nested
     accepts_nested_attributes_for :translations, allow_destroy: true
     attr_accessible :translations_attributes
@@ -60,6 +66,7 @@ module Vs
     attr_accessible :page
 
     class Translation
+      attr_accessible :voronin_studio_page_metadatum_id
       self.table_name = "voronin_studio_page_metadatum_translations"
       attr_accessible :locale, :head_title, :meta_tags, :meta_description
 

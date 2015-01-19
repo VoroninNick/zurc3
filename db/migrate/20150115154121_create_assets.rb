@@ -5,6 +5,7 @@ class CreateAssets < ActiveRecord::Migration
       t.text     :file
       t.integer  :assetable_id
       t.string   :assetable_type
+      t.integer :priority
       t.timestamps
     end
 

@@ -31,6 +31,7 @@ class CreateVsTables < ActiveRecord::Migration
       # columns for belongs_to :page, polymorphic: true
       t.integer :page_id
       t.string :page_type
+
       t.timestamps
     end
 

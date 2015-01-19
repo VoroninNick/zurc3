@@ -89,7 +89,8 @@ gem 'mini_magick'
 gem 'activeadmin', github: 'activeadmin'
 gem 'activeadmin-translate', github: 'rbatllet/activeadmin-translate'
 gem "activeadmin-sortable-tree", :github => "nebirhos/activeadmin-sortable-tree", :branch => "master"
-gem "active_admin_multi_upload"
+#gem "active_admin_multi_upload"
+gem 'active_admin_multi_upload', github: 'VoroninNick/active_admin_multi_upload', branch: 'pasha'
 gem 'activeadmin_associations', github: "vigetlabs/active_admin_associations", branch: 'activeadmin-1.0'
 gem "activeadmin-settings", github: 'VoroninNick/activeadmin-settings', branch: 'pasha'
 
@@ -98,3 +99,5 @@ gem 'migration_data'
 gem 'ancestry'
 
 gem 'default_value_for'
+
+gem 'amoeba'

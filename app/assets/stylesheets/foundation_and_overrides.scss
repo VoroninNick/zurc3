@@ -7,6 +7,8 @@
 // Uncomment to use rem-calc() in your settings
 @import "foundation/functions";
 
+$anchor-font-color: $orange-color;
+
 // $experimental: true;
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
@@ -1098,15 +1100,22 @@ img.half-grayscale:hover {
   filter: grayscale(1);
 }
 
+@import url(http://fonts.googleapis.com/css?family=Roboto:900,400,700,400italic,300italic,500,100italic,500italic,300,700italic,100,900italic&subset=cyrillic-ext,latin-ext,latin,cyrillic);
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,cyrillic);
+
+@import "functions";
 
 @import 'shadow-effects';
 
 
 @import 'layout';
+@import "articles";
 @import 'pages/home';
 @import "pages/contact";
 
 @import 'pages/what-we-do';
 
 @import "partials/home_gallery";
+
+@import "basic";
