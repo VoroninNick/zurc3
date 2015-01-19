@@ -1,6 +1,7 @@
 unless RakeSettings.self_skip_initializers?
   if ActiveRecord::Base.connection.tables.include?(Publication.table_name)
     ActiveAdmin.register Publication do
+      menu false
 
 
       # See permitted parameters documentation:

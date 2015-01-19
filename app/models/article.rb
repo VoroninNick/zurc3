@@ -15,6 +15,7 @@ class Article < ActiveRecord::Base
   attr_accessible :translations, :translations_attributes
 
   scope :publications, proc { where(article_category_id: 4 ) }
+  scope :publications_exclude_ads, proc { ads = PublicationAd.ads ; publications.select {|p| used = false; ads.map {|ad| used = true if ad.publication_id == p.id   }; !used  } }
   scope :about_us, proc { where(article_category_id: 2) }
   scope :what_we_do, proc { where(article_category_id: 1) }
   scope :news, proc { where(article_category_id: 3) }

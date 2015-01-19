@@ -15,6 +15,7 @@ uk:
         name: "Ім'я"
         short_description: "Короткий опис"
         full_description: "Повний опис"
+        slug: "url статті(наприклад транслітерація)"
       publication:
         name: "Назва"
         short_description: "Короткий опис"
