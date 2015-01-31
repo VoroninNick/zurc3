@@ -1,0 +1,29 @@
+#contact-message-section.page-section
+  - I18n.with_options scope: "activerecord.attributes.message" do |tm|
+    .row
+      .columns.large-12.page-section-title
+        = t("views.page-sections.contact.message_form")
+      = simple_form_for @message, url: send("#{I18n.locale}_message_path") do |f|
+        - f.with_options label: false do |l|
+          .columns.large-6
+            .field-wrap
+              = l.input_field :name
+              label.input-label.string for="message[name]"
+                = tm.t :name
+
+            .field-wrap
+              = l.input_field :phone
+              label.input-label.phone for="message[phone]"
+                = tm.t :phone
+
+            .field-wrap
+              = l.input_field :email
+              label.input-label.email for="message[email]"
+                = tm.t :email
+          .columns.large-6
+            .field-wrap
+              = l.input_field :message_text, as: :text
+              label.input-label.text for="message[message_text]"
+                = tm.t :message_text
+
+            = f.button :submit

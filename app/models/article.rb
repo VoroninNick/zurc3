@@ -20,16 +20,21 @@ class Article < ActiveRecord::Base
   scope :order_by_date_desc, proc { order('release_date desc') }
 
   translates :name, :short_description, :content, :author, :intro, :slug, :versioning => :paper_trail, autosave: true, foreign_key: :article_id
+  accepts_nested_attributes_for :translations
+  attr_accessible :translations, :translations_attributes
+
+
+
   #has_many :translations,autosave: true
   # has_many :translations, :class_name  => translation_class.name,
   #          :foreign_key => options[:foreign_key],
   #          :dependent   => :destroy,
   #          :extend      => HasManyExtensions,
   #          :autosave    => true
-  accepts_nested_attributes_for :translations
-  attr_accessible :translations, :translations_attributes
+
 
   class Translation
+    attr_accessible :article_id, :article
     attr_accessible :locale, :name, :short_description, :content, :author, :intro, :slug
     before_validation :generate_slug
 
@@ -39,6 +44,14 @@ class Article < ActiveRecord::Base
     end
 
   end
+
+  # has_many :translations, :class_name  => ::Article::Translation.name,
+  #          :foreign_key => :article_id,
+  #          :dependent   => :destroy,
+  #          :extend      => ::Globalize::ActiveRecord::HasManyExtensions,
+  #          :autosave    => true
+
+
 
   has_one :page_metadata, :class_name => 'Vs::PageMetadata', as: :page
   accepts_nested_attributes_for :page_metadata, allow_destroy: true
@@ -63,11 +76,19 @@ class Article < ActiveRecord::Base
 
 
   def url(locale = I18n.locale)
-    if ( p = page_metadata ) && ( url = page_metadata.get_url(locale) )
-      return Rails.application.routes.url_helpers.send("#{locale}_publication_view_path", locale: locale, id: url)
-    else
-      return "#"
+    # if ( p = page_metadata ) && ( url = page_metadata.get_url(locale) )
+    #   return Rails.application.routes.url_helpers.send("#{locale}_publication_view_path", locale: locale, id: url)
+    # else
+    #   return "#"
+    # end
+
+    case self.article_category_id
+      when 4
+        return Rails.application.routes.url_helpers.send("#{locale}_publication_view_path", locale: locale, id: self.slug)
     end
+
+
+    "#"
   end
 
   def related_publications
@@ -88,5 +109,10 @@ class Article < ActiveRecord::Base
 
   def self.next_model_id
     ActiveRecord::Base.connection.execute("SELECT NEXTVAL('models_id_seq')").first["nextval"].to_i
+  end
+
+  def run_clone
+    #original_article = Article.first
+
   end
 end

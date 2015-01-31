@@ -1,6 +1,7 @@
 class CreateArticles < ActiveRecord::Migration
   def up
     create_table :articles do |t|
+      t.boolean :published
       t.string :name
       t.text :short_description
       t.text :intro

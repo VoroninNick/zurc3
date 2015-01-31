@@ -1,4 +1,6 @@
 @import 'vars';
+@import "functions";
+@import "basic";
 
 //
 // FOUNDATION SETTINGS
@@ -1104,7 +1106,7 @@ img.half-grayscale:hover {
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,cyrillic);
 
-@import "functions";
+//@import "functions";
 
 @import 'shadow-effects';
 
@@ -1112,10 +1114,10 @@ img.half-grayscale:hover {
 @import 'layout';
 @import "articles";
 @import 'pages/home';
-@import "pages/contact";
+@import "pages/_contact";
 
 @import 'pages/what-we-do';
 
 @import "partials/home_gallery";
 
-@import "basic";
+//@import "basic";

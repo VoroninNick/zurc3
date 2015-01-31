@@ -23,6 +23,22 @@ unless RakeSettings.self_skip_initializers?
       actions
     end
 
+    form do |f|
+      f.inputs do
+        f.input :name
+        f.input :route_name
+        f.input :controller_action
+        f.input :methods
+      end
+
+      f.translate_inputs do |t|
+        t.input :route_string
+        t.input :redirect_to_url
+      end
+
+      f.actions
+    end
+
 
   end
 end

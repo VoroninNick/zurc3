@@ -5,6 +5,9 @@ uk:
       activeadmin_settings/setting: "Налаштування"
       admin_user: "Адміністратори"
       vs/route: "Роути"
+      pages/home_page: "Головна"
+      message: "Повідомлення"
+
 
     attributes:
       article:
@@ -27,3 +30,8 @@ uk:
         author: "Автор"
         avatar: "Аватар"
         intro: "Вступ"
+      message:
+        name: "Ваше ім'я"
+        email: "Контактний телефон"
+        phone: "Електронна скринька"
+        message_text: "Текст повыдомлення"

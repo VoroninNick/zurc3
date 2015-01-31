@@ -24,4 +24,5 @@
 //= require fancybox
 //= require layout
 //= require page
-
+//= require richmarker
+//= require google_map

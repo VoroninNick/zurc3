@@ -28,4 +28,31 @@ class ApplicationController < ActionController::Base
   def user_for_paper_trail
     admin_user_signed_in? ? current_admin_user : 'Unknown user'
   end
+
+  before_filter :set_locale
+
+  def set_locale
+
+
+    params_locale = params[:locale]
+    locale = nil
+    if params_locale && I18n.available_locales.include?(params_locale.to_sym)
+      locale = params_locale
+    else
+      locale = I18n.default_locale
+    end
+
+    if locale.to_sym != I18n.locale.to_sym
+      redirect_to locale: locale
+    end
+  end
+
+  before_filter :set_locale_links
+
+  def set_locale_links
+    @locale_links = {}
+    I18n.available_locales.each do |locale|
+      @locale_links[locale.to_sym] = url_for(locale: locale)
+    end
+  end
 end

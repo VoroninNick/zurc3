@@ -127,7 +127,7 @@ $breadcrumbs-wrapper-height: rem-calc(70);
                     color: $orange-color;
 				}
 
-				&#ua, &#uk{
+				&#uk, &#en{
 					.image-wrapper{
 						width: 16px;
 						height: 11px;
@@ -392,18 +392,24 @@ $breadcrumbs-wrapper-height: rem-calc(70);
 
 /* sticky footer */
 $footer-height: 600px;
+$indent-between-content-and-footer: 32px;
 
 html, body {height: 100%;}
 
 #wrap {min-height: 100%;}
 
 #main {overflow:auto;
-	padding-bottom: $footer-height;}  /* must be same height as the footer */
+	padding-bottom: #{$footer-height + $indent-between-content-and-footer};}  /* must be same height as the footer */
 
-#full-footer {position: relative;
-	margin-top: -#{$footer-height}; /* negative value of footer height */
-	height: $footer-height;
-	clear:both;} 
+#full-footer {
+  position: relative;
+
+  margin-top: -#{$footer-height + $indent-between-content-and-footer}; /* negative value of footer height */
+  height: #{$footer-height + $indent-between-content-and-footer};
+  clear:both;
+
+  padding-top: $indent-between-content-and-footer; // make vertical indent between content and footer
+}
 
 /*Opera Fix*/
 body:before {
@@ -674,7 +680,7 @@ body:before {
 
 #breadcrumbs-wrapper{
 	background-color: $extra-lightgray-color;
-    margin: 1.5rem 0 rem-calc(96) 0;
+    margin: 1.5rem 0 rem-calc(64) 0;
     height: $breadcrumbs-wrapper-height;
     line-height: $breadcrumbs-wrapper-height;
 
@@ -831,7 +837,7 @@ body:before {
         position: absolute;
         background: #ffffff;
         text-align: justify;
-
+        z-index: 1;
 
       }
 

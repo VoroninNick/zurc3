@@ -1,7 +1,7 @@
 unless RakeSettings.self_skip_initializers?
-  if ActiveRecord::Base.connection.tables.include?(PublicationAd.table_name)
+  if begin ActiveRecord::Base.connection.tables.include?(PublicationAd.table_name) rescue false end
     ActiveAdmin.register PublicationAd do
-
+      menu false
 
       # See permitted parameters documentation:
       # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

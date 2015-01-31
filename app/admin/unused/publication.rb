@@ -1,5 +1,5 @@
 unless RakeSettings.self_skip_initializers?
-  if ActiveRecord::Base.connection.tables.include?(Publication.table_name)
+  if begin ActiveRecord::Base.connection.tables.include?(Publication.table_name) rescue false end
     ActiveAdmin.register Publication do
       menu false
 

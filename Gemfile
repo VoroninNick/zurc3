@@ -79,7 +79,9 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 gem 'devise-i18n'
 
 
-gem 'globalize'
+gem 'globalize', github: "VoroninNick/globalize", branch: "autosave"
+#gem 'globalize', github: 'scarfacedeb/globalize'
+
 gem 'globalize-versioning'
 gem 'paper_trail'
 
@@ -101,3 +103,9 @@ gem 'ancestry'
 gem 'default_value_for'
 
 gem 'amoeba'
+gem 'deep_cloneable'
+
+#gem "activerecord-tableless", "~> 1.0"
+gem 'activerecord-tableless', github: 'david135/activerecord-tableless'
+
+gem 'simple_form'

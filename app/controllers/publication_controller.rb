@@ -3,9 +3,14 @@ class PublicationController < InnerPageController
     #@publications = Publication.where(published: 't').limit(10)
     #@articles = Article.publications.includes(:attachments)
     @publication_ads = PublicationAd.ads
-    @articles = Article.publications_exclude_ads(@publication_ads)
+    @articles = Article.order_by_date_desc.publications_exclude_ads(@publication_ads)
 
     @breadcrumbs.push({title: "Публікації", url: false, current: true})
+
+    #render inline: I18n.locale.to_s
+
+    #render template: "publication/_list_item", locals: { article: @articles[0] }
+    #render inline: @articles[0].url
   end
 
   def view

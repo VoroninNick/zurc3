@@ -17,9 +17,18 @@
     </div>
 
     <div id="language-bar" class="large-2 hide-for-medium-down columns">
+      <% locale_labels = { uk: "UA", en: "ENG" } %>
       <ul class="right">
-        <li class="language" id="ua"><span class="image-wrapper"><%=  image_tag('flags/ukraine.png') %></span><span class="language-label">UA</span></li>
-        <li class="language" id="uk"><%= link_to( image_tag('flags/united_kingdom.png'), '#', class: 'image-wrapper' ) %><%= link_to('ENG', '#', class: 'language-label') %></li>
+        <% I18n.available_locales.each do |locale| %>
+            <li class="language" id="<%= locale %>">
+              <% if I18n.locale.to_sym == locale.to_sym  %>
+                  <%= content_tag(:span, class: 'image-wrapper') { image_tag("flags/#{locale}.png") } + content_tag(:span, locale_labels[locale.to_sym], class: "language-label")  %>
+              <% else %>
+                  <%= link_to( image_tag("flags/#{locale}.png"), @locale_links[locale.to_sym], class: 'image-wrapper' ) %>
+                  <%= link_to(locale_labels[locale.to_sym], @locale_links[locale.to_sym], class: 'language-label') %>
+              <% end %>
+            </li>
+        <% end %>
       </ul>
     </div>
     <div id="mobile-button-column" class="small-3 columns right show-for-medium-down">

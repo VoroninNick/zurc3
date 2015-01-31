@@ -2,8 +2,8 @@ en:
   activerecord:
     models:
       article:
-        one: "Стаття"
-        other: "Статті"
+        one: "Article"
+        other: "Articles"
       activeadmin_settings/setting: "Setting"
       admin_user:
         one: "Administrator"
@@ -11,6 +11,9 @@ en:
       vs/route:
         one: "Route"
         other: "Routes"
+      pages/home_page:
+        one: "Home"
+        other: "Home"
     attributes:
       article:
         name: "Ім'я"

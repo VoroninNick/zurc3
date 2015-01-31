@@ -31,7 +31,10 @@ unless RakeSettings.self_skip_initializers?
     # get "about", to: 'page#about', as: 'about'
     # get "what-we-do", to: 'page#what_we_do', as: 'what_we_do'
     #get "*custom_page", to: 'page#custom_page'
-    root to: "home#index"
+
+    scope "/(:locale)", locale: /[A-Za-z]{2}/, defaults: { locale: I18n.locale } do
+      root to: "home#index"
+    end  
 
 
 
