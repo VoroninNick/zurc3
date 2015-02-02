@@ -109,3 +109,5 @@ gem 'deep_cloneable'
 gem 'activerecord-tableless', github: 'david135/activerecord-tableless'
 
 gem 'simple_form'
+
+gem 'kaminari'

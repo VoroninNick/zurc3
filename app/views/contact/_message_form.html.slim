@@ -3,27 +3,39 @@
     .row
       .columns.large-12.page-section-title
         = t("views.page-sections.contact.message_form")
+
+
       = simple_form_for @message, url: send("#{I18n.locale}_message_path") do |f|
+        - if flash[:notice]
+          .notice.error.columns.large-12
+            = flash[:notice]
         - f.with_options label: false do |l|
           .columns.large-6
             .field-wrap
               = l.input_field :name
-              label.input-label.string for="message[name]"
+              label.input-label.string for="message_name"
                 = tm.t :name
+
 
             .field-wrap
               = l.input_field :phone
-              label.input-label.phone for="message[phone]"
-                = tm.t :phone
+              label.input-label.phone for="message_phone" class="#{"error" if @message.errors.keys.map(&:to_sym).include?(:phone)}"
+                - if @message.errors.keys.map(&:to_sym).include?(:phone)
+                  - @message.errors[:phone].each do |error_text|
+                    span
+                      = error_text
+                - else
+                  = tm.t :phone
+
 
             .field-wrap
               = l.input_field :email
-              label.input-label.email for="message[email]"
+              label.input-label.email for="message_email"
                 = tm.t :email
           .columns.large-6
             .field-wrap
               = l.input_field :message_text, as: :text
-              label.input-label.text for="message[message_text]"
+              label.input-label.text for="message_message_text"
                 = tm.t :message_text
 
             = f.button :submit

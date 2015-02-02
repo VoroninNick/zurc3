@@ -2,7 +2,7 @@ class CreateArticleAds < ActiveRecord::Migration
   def up
     create_table :article_ads do |t|
       t.belongs_to :article
-      t.string :custom_release_date
+      t.datetime :custom_release_date
       t.string :custom_title
       t.string :release_date_source
       t.string :title_source

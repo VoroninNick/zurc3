@@ -1,20 +1,27 @@
-- if @publication_ads.count > 0
-  .publication-ads
-    - @publication_ads.each do |ad|
-      .publication-ad
-        img.publication-ad-img
-        .publication-ad-title-and-date
-          .publication-ad-title
-            = ad.title
-          .publication-ad-date
-            = ad.release_date.strftime("%d.%m.%Y")
-.row
-  .page-title.columns.large-12
-    = "Останні публікації"
-  .list.publications-list
-    - if @articles.count > 0
-      .list.publications-list-collection
-        - @articles.each do |article|
-          = render partial: "publication/list_item", locals: { article: article }
-    - else
-      = "Публікацій немає"
+.publications-list-page
+  .publication-ads.page-section.inner-indent-for-backround
+
+  - if @publication_ads.count > 0
+    .publication-ads
+      - @publication_ads.each do |ad|
+        .publication-ad
+          img.publication-ad-img
+          .publication-ad-title-and-date
+            .publication-ad-title
+              = ad.title
+            .publication-ad-date
+              = ad.release_date.strftime("%d.%m.%Y")
+
+
+  - if @articles && @articles.respond_to?(:count) && @articles.count > 0
+    .row
+      .page-title.columns.large-12
+        = "Останні публікації"
+      .list.publications-list.infinity-scroll-list
+        - if @articles.count > 0
+          .list.publications-list-collection
+            - @articles.each do |article|
+              = render partial: "publication/list_item", locals: { article: article }
+        - else
+          = "Публікацій немає"
+      = paginate @articles

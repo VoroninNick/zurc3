@@ -26,3 +26,4 @@
 //= require page
 //= require richmarker
 //= require google_map
+//= require infinity_scroll

@@ -20,3 +20,5 @@ bin
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/config/initializers/mailer_settings.rb

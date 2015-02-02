@@ -1,7 +1,14 @@
+.publications-list-page{
+
+}
+
 .list-item{
   margin: 2.5rem 0 2.5rem 0;
   float: none;
   display: inline-block;
+  &:last-child{
+    float: none !important;
+  }
 }
 
 .list-item-title-a{
@@ -212,4 +219,8 @@
       border-bottom-color: $orange-color;
     }
   }
+}
+
+.pagination{
+  display: none;
 }

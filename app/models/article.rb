@@ -11,13 +11,14 @@ class Article < ActiveRecord::Base
   belongs_to :article_category
 
   scope :publications, proc { where(article_category_id: 4 ) }
-  scope :publications_exclude_ads, ->(ads = PublicationAd.ads) { publications.select {|p| used = false; ads.map {|ad| used = true if ad.publication_id == p.id   }; !used  } }
+  #scope :publications_exclude_ads, ->(ads = ArticleAd.ads) { publications.select {|p| used = false; ads.map {|ad| used = true if ad.article_id == p.id   }; !used  } }
+  scope :publications_exclude_ads, ->(ads = ArticleAd.ads || [] ) { ads = [] if ads.nil?; publications.where.not(id: ads.map(&:article_id) )  }
   scope :about_us, proc { where(article_category_id: 2) }
   scope :what_we_do, proc { where(article_category_id: 1) }
   scope :news, proc { where(article_category_id: 3) }
   scope :published, proc { where(published: 't') }
   scope :unpublished, proc { where.not(published: 't') }
-  scope :order_by_date_desc, proc { order('release_date desc') }
+  scope :order_by_date_desc, -> { order('release_date desc') }
 
   translates :name, :short_description, :content, :author, :intro, :slug, :versioning => :paper_trail, autosave: true, foreign_key: :article_id
   accepts_nested_attributes_for :translations
@@ -31,7 +32,6 @@ class Article < ActiveRecord::Base
   #          :dependent   => :destroy,
   #          :extend      => HasManyExtensions,
   #          :autosave    => true
-
 
   class Translation
     attr_accessible :article_id, :article
