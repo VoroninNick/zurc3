@@ -16,7 +16,7 @@ ActiveAdmin.register ArticleAd do
 
   form html: { style: "display: block !important;" } do |f|
     f.inputs do
-      f.input :article, as: :select, collection: Article.all
+      f.input :article, as: :select, collection: Article.all#.publications_exclude_ads
 
       f.input :title_source, as: :radio, collection: [
          ["title", "title", { :"data-show-selector" => "#article_ad_title_source_input + .activeadmin-translate", :"data-hide-selector" => "" }],
@@ -27,13 +27,13 @@ ActiveAdmin.register ArticleAd do
       end
 
       f.input :release_date_source, as: :radio, collection: [
-         ["title", "title", { :"data-show-selector" => "#article_ad_custom_release_date_input", :"data-hide-selector" => "" }],
+         ["release_date", "release_date", { :"data-show-selector" => "#article_ad_custom_release_date_input", :"data-hide-selector" => "" }],
          ["association", "association", { :"data-show-selector" => "", :"data-hide-selector" => "#article_ad_custom_release_date_input", checked: (f.object.release_date_source.blank?) ?  true : f.object.release_date_source == "association"  }] ]
 
       f.input :custom_release_date#, as: :datetime
 
       f.input :image_source, as: :radio, collection: [
-          ["title", "title", { :"data-show-selector" => "#custom_image_inputs", :"data-hide-selector" => "" }],
+          ["image", "image", { :"data-show-selector" => "#custom_image_inputs", :"data-hide-selector" => "" }],
           ["association", "association", { :"data-show-selector" => "", :"data-hide-selector" => "#custom_image_inputs", checked: (f.object.image_source.blank?) ?  true : f.object.image_source == "association"  }] ]
 
       #f.inputs "Article"

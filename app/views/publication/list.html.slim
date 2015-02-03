@@ -1,16 +1,19 @@
 .publications-list-page
-  .publication-ads.page-section.inner-indent-for-backround
-
   - if @publication_ads.count > 0
-    .publication-ads
-      - @publication_ads.each do |ad|
-        .publication-ad
-          img.publication-ad-img
-          .publication-ad-title-and-date
-            .publication-ad-title
-              = ad.title
-            .publication-ad-date
-              = ad.release_date.strftime("%d.%m.%Y")
+    .publication-ads.page-section.inner-indent-for-backround
+      .publication-ads
+        - @publication_ads.each do |ad|
+          .publication-ad
+            - if !ad.image_url.blank?
+              img.publication-ad-img src="#{ad.image_url}"
+            - if !ad.title.blank? || !ad.release_date.blank?
+              .publication-ad-title-and-date
+                - if !ad.title.blank?
+                  .publication-ad-title
+                    = ad.title
+                - if !ad.release_date.blank?
+                  .publication-ad-date
+                    = ad.release_date.strftime("%d.%m.%Y")
 
 
   - if @articles && @articles.respond_to?(:count) && @articles.count > 0

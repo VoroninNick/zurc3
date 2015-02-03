@@ -106,7 +106,7 @@
     font-style: italic;
     font-weight: 500;
     box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
-    padding: 0 1rem;
+    padding: 1rem;
 
     color: $blue-color;
 
@@ -168,8 +168,10 @@
     float: right;
   }
 
-  input:not([type=submit]).error ~ label.input-label{
-    display: none;
+  input:not([type=submit]), textarea {
+      &.error ~ label.input-label {
+          display: none;
+      }
   }
 }
 

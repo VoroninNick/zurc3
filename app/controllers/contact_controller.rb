@@ -23,9 +23,12 @@ class ContactController < InnerPageController
     @status =  successful ? :successful : :error
     flash[:notice] = I18n.t("simple_form.notices.message.#{@status}")
 
-
+    respond_to do |format|
+      format.html { render template: "contact/index" }
+      format.json { render inline: {successful: true}.to_json }
+    end
 
     #render inline: @message.errors.values.inspect if !successful
-    render template: "contact/index"# if successful
+
   end
 end

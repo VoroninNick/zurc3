@@ -44,6 +44,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [400,300]
   end
 
+  with_options(if: proc { a = model.assetable; (a.is_a?(Article) && a.publication?) || ( a.is_a?(ArticleAd) && a.article.publication? )  })  do |publication_image|
+    publication_image.version :featured_article_large do
+      process :resize_to_fill => [800, 400]
+    end
+
+    publication_image.version :featured_article_small, if: proc {  } do
+      process :resize_to_fill => [360, 180]
+    end
+  end
+
+
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list

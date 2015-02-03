@@ -13,10 +13,14 @@ class ArticleAd < ActiveRecord::Base
 
   validates_presence_of :article
 
-  scope :valid, -> { select{|a| a.valid?  } }
-  scope :ads, -> { valid.first(3) }
+  scope :valid, -> { except{|a| !a.valid?  } }
+  #scope :valid, -> { ids_to_ignore = []; all.each{|a| ids_to_ignore << !a.valid?;  }; return where.not(id: ids_to_ignore) if ids_to_ignore.count > 0; all }
+  scope :ads, -> { valid.limit(3) }
 
 
+  def valid?
+    super && !title.blank? && !release_date.blank? && !image_url.blank?
+  end
 
   def title
     if self.title_source == "title"
@@ -31,6 +35,25 @@ class ArticleAd < ActiveRecord::Base
       self.custom_release_date
     else
       self.article ? self.article.release_date : nil
+    end
+  end
+
+  def image_url
+    uploader = nil
+    if self.image_source == "image"
+      uploader = ( ( ( img = self.custom_image) &&  ( f = img.file) ) ? f : nil  )
+    else
+      uploader = ( ((a = self.article) && ( img = a.image) &&  (f = img.file) ) ? f : nil  )
+    end
+
+    if !uploader.nil? && (ads = ArticleAd.ads ) && ads.where(id: self.id).count > 0
+      if ads.first.id = self.id
+        uploader.send('featured_article_large').url
+      else
+        uploader.send('featured_article_small').url
+      end
+    else
+      return nil
     end
   end
 

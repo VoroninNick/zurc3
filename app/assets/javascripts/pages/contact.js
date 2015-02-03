@@ -1,5 +1,5 @@
 $document.on('ready page:load', function(){
-    $('input[type=tel]').mask("+38 (999) 99 99")
+    $('input[type=tel]').mask("+38 (999) 999 99 99")
 
     //var $form = $('form')
     //var $validatable_fields = $form.find('[data-validate]')
@@ -16,8 +16,13 @@ $document.on('ready page:load', function(){
     //    }
     //
     //})
+    var $form = $('form')
 
-    $('form').validate({
+    $form.validate({
+        onsubmit: false,
+        onfocusout: true,
+        onkeyup: true,
+        onclick: true,
         rules: {
             name: {
                 required: true,
@@ -33,10 +38,7 @@ $document.on('ready page:load', function(){
             message_text: {
                 required: true//,
                 //minlength: 2
-            },
-            onsubmit: true,
-            onfocusout: true,
-            onkeyup: true
+            }
         },
         messages: {
             name: {
@@ -54,6 +56,27 @@ $document.on('ready page:load', function(){
                 required: "Повідомлення не може бути порожнім"
             }
 
+        }
+    })
+
+    $form.on('submit', function(event){
+        event.preventDefault()
+        if($form.valid()){
+            var form_data = $form.serializeArray()
+            var method = $form.attr('method') || 'post'
+            var uri = $form.attr('action') || window.location
+            $.ajax({
+                type: method,
+                url: uri,
+                data: form_data,
+                dataType: "json",
+                success: function(){
+                    alert("Дякуэмо, повідомлення було упішно надіслано")
+                },
+                error: function(){
+                    alert("Вибачте, виникла помилка")
+                }
+            })
         }
     })
 })

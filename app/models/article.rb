@@ -12,13 +12,32 @@ class Article < ActiveRecord::Base
 
   scope :publications, proc { where(article_category_id: 4 ) }
   #scope :publications_exclude_ads, ->(ads = ArticleAd.ads) { publications.select {|p| used = false; ads.map {|ad| used = true if ad.article_id == p.id   }; !used  } }
-  scope :publications_exclude_ads, ->(ads = ArticleAd.ads || [] ) { ads = [] if ads.nil?; publications.where.not(id: ads.map(&:article_id) )  }
+  scope :publications_exclude_ads, ->(ads = ArticleAd.ads || [] ) { ads = ArticleAd.ads || [] if ads.nil?; publications.where.not(id: ads.map(&:article_id) )  }
   scope :about_us, proc { where(article_category_id: 2) }
   scope :what_we_do, proc { where(article_category_id: 1) }
   scope :news, proc { where(article_category_id: 3) }
   scope :published, proc { where(published: 't') }
   scope :unpublished, proc { where.not(published: 't') }
   scope :order_by_date_desc, -> { order('release_date desc') }
+
+
+  def publication?
+    Article.publications.where(id: self.id).count > 0
+  end
+
+  def about_us?
+    Article.about_us.where(id: self.id).count > 0
+  end
+
+  def what_we_do?
+    Article.what_we_do.where(id: self.id).count > 0
+  end
+
+  def news?
+    Article.news.where(id: self.id).count > 0
+  end
+
+
 
   translates :name, :short_description, :content, :author, :intro, :slug, :versioning => :paper_trail, autosave: true, foreign_key: :article_id
   accepts_nested_attributes_for :translations

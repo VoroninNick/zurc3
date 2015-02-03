@@ -36,7 +36,7 @@
                 = tm.t :email
           .columns.large-6
             .field-wrap
-              = l.input_field :message_text, as: :text, html: { :"data-validate" => "presence", :"data-validate-min" => "" }
+              = l.input_field :message_text, as: :text
               /label.input-label.text for="message_message_text"
                 = tm.t :message_text
               = f.label :phone, class: "input-label phone #{"error" if params[:action].to_sym != :index && @message.errors[:message_text].any?}" do
