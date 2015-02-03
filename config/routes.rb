@@ -1,5 +1,6 @@
 unless RakeSettings.self_skip_initializers?
   Rails.application.routes.draw do
+    match "(/:locale)/article_ads/", as: :article_ads, via: [:get, :post]
     mount Ckeditor::Engine => '/ckeditor'
 
 
