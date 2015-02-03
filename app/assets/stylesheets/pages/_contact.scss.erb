@@ -213,6 +213,9 @@
 
 input[type=submit]{
     cursor: pointer;
+    @include transition-property(background-color);
+    @include transition-duration(0.2s);
+
     &:hover{
         background-color: $orange-color;
     }
