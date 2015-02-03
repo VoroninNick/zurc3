@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require variables
+//= require jquery.validate
 
 //= require jquery.flexisel
+//= require jquery.masked_input
 // require caroufredsel
 //= require greyScale
 //= require jquery.black_and_white.min
@@ -27,3 +29,4 @@
 //= require richmarker
 //= require google_map
 //= require infinity_scroll
+//= require pages/contact

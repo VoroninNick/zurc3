@@ -754,10 +754,13 @@ body:before {
 }
 
 #menu-container {
+  text-align: center;
 
   > ul {
+    display: inline-block;
     margin: 0;
     > li {
+      float: left;
       display: inline-block;
       vertical-align: top;
 

@@ -13,6 +13,8 @@ class ContactController < InnerPageController
 
   def post_message
     successful = false
+    initialize_contact_page
+
     @message = Message.new(params[:message])
     if @message.valid?
       successful = true
@@ -22,7 +24,7 @@ class ContactController < InnerPageController
     flash[:notice] = I18n.t("simple_form.notices.message.#{@status}")
 
 
-    initialize_contact_page
+
     #render inline: @message.errors.values.inspect if !successful
     render template: "contact/index"# if successful
   end
