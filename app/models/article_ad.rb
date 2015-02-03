@@ -18,8 +18,8 @@ class ArticleAd < ActiveRecord::Base
   scope :ads, -> { valid.limit(3) }
 
 
-  def valid?
-    super && !title.blank? && !release_date.blank? && !image_url.blank?
+  def valid?(context = nil)
+    super(context) && !title.blank? && !release_date.blank? && !image_url.blank?
   end
 
   def title
