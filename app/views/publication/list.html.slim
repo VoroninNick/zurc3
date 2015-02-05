@@ -1,18 +1,18 @@
 .publications-list-page
   - if @publication_ads.count > 0
-    .publication-ads.page-section.inner-indent-for-backround
-      .publication-ads
-        - @publication_ads.each do |ad|
-          .publication-ad
+    .featured-publications-section.page-section.inner-indent-for-backround
+      .featured-publications-row.row
+        - @publication_ads.each_with_index do |ad, index|
+          .featured-publication class="columns #{index == 0 ? "featured-large large-8" : "featured-small large-4" }"
             - if !ad.image_url.blank?
-              img.publication-ad-img src="#{ad.image_url}"
+              img.featured-publication-img src="#{ad.image_url}"
             - if !ad.title.blank? || !ad.release_date.blank?
-              .publication-ad-title-and-date
+              .featured-publication-title-and-date
                 - if !ad.title.blank?
-                  .publication-ad-title
+                  .featured-publication-title
                     = ad.title
                 - if !ad.release_date.blank?
-                  .publication-ad-date
+                  .featured-publication-date
                     = ad.release_date.strftime("%d.%m.%Y")
 
 

@@ -1,32 +1,18 @@
+<div id="slider">
+  <div style="position: absolute;width:100%;z-index: 100;">
+    <%# render partial: 'partials/menu' %>
+    <%= render partial: "layouts/menu" %>
+  </div>
+    <ul id="refineslide-images" class="rs-slider">
+     <li style="background-image: url(/assets/banners/1.jpg)" class="slide-bg group">
+     <a href="#">
+     <img src="/assets/banners/1.jpg" alt="" />
+     </a>
+     <div class="rs-caption">
+     <span class="home-slider-slide-caption-title">Дослідження</span>
+     <span class="home-slider-slide-caption-description">Ініціативна група розробляє приорітети розвитку села</span>
+     </div>
+     </li>
 
-            <div id="slider">
-               <div style="position: absolute;width:100%;z-index: 100;">
-        <%# render partial: 'partials/menu' %>
-        <%= render partial: "layouts/menu" %>
-      </div>
-                                <ul id="refineslide-images" class="rs-slider">
-                                 <li class="group">
-                                 <a href="#">
-                                 <img src="/assets/banners/1.jpg" alt="" />
-                                 </a>
-                                 <div class="rs-caption rs-bottom">
-                                 <h3>Caption Area</h3>
-                                 <p>Wood texture by <a href="http://downloads.dvq.co.nz/" class="button">Matthew Skiles.</a></p>
-                                 </div>
-                                 </li>
-                                 <li class="group">
-                                 <a href="#" class="slide-parent">
-                                 <img src="/assets/banners/2.jpg" alt=""/>
-                                 </a>
-                                 <div class="rs-caption rs-top-right">
-                                 <p>This image is wrapped in a link.</p>
-                                 </div>
-                                 </li>
-                                 <li class="group">
-                                 <img src="http://placehold.it/1800x800&text=img" alt=""/>
-                                 <div class="rs-caption rs-bottom-right">
-                                 <p>Adapted from <a class="button" href="http://dribbble.com/shots/154205-Cool-Green-Signup-form">Glenn Van Bogaert</a></p>
-                                 </div>
-                                 </li>
-                                </ul>
-            </div> <!-- /.section-2 -->
+    </ul>
+</div>

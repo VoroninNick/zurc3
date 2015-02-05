@@ -63,7 +63,7 @@ $('#foo1 li a.fb').fancybox();
 // home_slider
 
 $('#refineslide-images').refineSlide({
-  maxWidth: '1800',
+  maxWidth: '100%',
   useArrows: true,
   transitionDuration: 800,
   transition: 'sliceV',

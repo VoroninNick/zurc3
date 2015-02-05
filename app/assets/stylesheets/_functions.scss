@@ -67,6 +67,10 @@
   @include vendor-prefix(transition-property, $value)
 }
 
+@mixin transform($value){
+  @include vendor-prefix(transform, $value)
+}
+
 @mixin placeholder {
   &::-webkit-input-placeholder {
     @content;

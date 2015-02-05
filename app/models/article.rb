@@ -71,6 +71,19 @@ class Article < ActiveRecord::Base
   #          :autosave    => true
 
 
+  before_validation :init_default_values
+
+  def init_default_values
+    self.release_date = DateTime.now if self.release_date.blank?
+  end
+
+  # def initialize attributes = nil, options = {}
+  #   super(attributes, options)
+  #   #self.release_date
+  # end
+
+
+
 
   has_one :page_metadata, :class_name => 'Vs::PageMetadata', as: :page
   accepts_nested_attributes_for :page_metadata, allow_destroy: true

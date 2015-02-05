@@ -1,4 +1,27 @@
 .publications-list-page{
+  .featured-publication{
+    .featured-publication-title-and-date{
+      background-color: $blue-color;
+      padding: 0 1rem;
+      height: 3.25rem;
+    }
+  }
+}
+
+.featured-publication-date, .featured-publication-title{
+  overflow: hidden;
+  display: block;
+}
+
+.featured-publication-title{
+  color: white;
+  line-height: 2rem;
+  height: 2rem;
+}
+
+.featured-publication-date{
+  line-height: 1.25rem;
+  height: 1.25rem;
 
 }
 

@@ -47,5 +47,22 @@
 
 // allow models
 form.article_ad {
-  display: block !important;
+  //display: block !important;
+}
+
+#header ul.tabs > li{
+  //display: inline-block !important;
+}
+
+
+
+/* display: none */
+
+input[type=text][readonly=readonly]{
+  &, &:focus {
+    border: none;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+  }
 }

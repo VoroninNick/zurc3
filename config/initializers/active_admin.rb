@@ -221,7 +221,7 @@ ActiveAdmin.setup do |config|
                :id => 'current_user',
                :if => proc { current_active_admin_user? }
 
-      menu.add :label => "Статті(Реклама)", url: proc {"/#{I18n.locale}/admin/article_ads"}
+      #menu.add :label => "Статті(Реклама)", url: proc {"/#{I18n.locale}/admin/article_ads"}
       admin.add_logout_button_to_menu menu
     end
   end

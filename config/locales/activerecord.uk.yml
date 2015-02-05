@@ -7,6 +7,7 @@ uk:
       vs/route: "Роути"
       pages/home_page: "Головна"
       message: "Повідомлення"
+      article_ad_new: "Статті(Реклама)"
 
 
     attributes:
@@ -17,6 +18,8 @@ uk:
         short_description: "Короткий опис"
         full_description: "Повний опис"
         slug: "url статті(наприклад транслітерація)"
+      article_ad_new:
+
       publication:
         name: "Назва"
         short_description: "Короткий опис"
